@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn = findViewById(R.id.button);
         TextView text = findViewById(R.id.textView2);
         TextView text11 = findViewById(R.id.textView3);
-
+        TextView text22 = findViewById(R.id.textView4);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,32 +29,46 @@ public class MainActivity extends AppCompatActivity {
                 String text3 = op.getText().toString();
 
                 if(!text1.isEmpty()&&!text2.isEmpty()&&!text3.isEmpty()){
-                    int number1 = Integer.parseInt(text1);
-                    int number2 = Integer.parseInt(text2);
+                    double number1 = Integer.parseInt(text1);
+                    double number2 = Integer.parseInt(text2);
+                    double sum;
                     if(text3.equals("-")){
-
-                        int sum = number1 - number2;
+                        sum = number1 - number2;
                         String m = String.valueOf(sum);
+                        text.setVisibility(View.VISIBLE);
                         text11.setVisibility(View.GONE);
+                        text22.setVisibility(View.GONE);
                         text.setText(m);
                     }else if(text3.equals("+")){
-
-                        int sum = number1 + number2;
+                        sum = number1 + number2;
+                        text.setVisibility(View.VISIBLE);
                         String m = String.valueOf(sum);
                         text11.setVisibility(View.GONE);
+                        text22.setVisibility(View.GONE);
                         text.setText(m);
                     }else if(text3.equals("*")){
-
-                        int sum = number1 * number2;
+                        sum = number1 * number2;
+                        text.setVisibility(View.VISIBLE);
                         String m = String.valueOf(sum);
                         text11.setVisibility(View.GONE);
+                        text22.setVisibility(View.GONE);
                         text.setText(m);
-                    } else {
+                    } else if(text3.equals("/")){
+                        sum = number1 / number2;
+                        text.setVisibility(View.VISIBLE);
+                        String m = String.valueOf(sum);
                         text11.setVisibility(View.GONE);
+                        text22.setVisibility(View.GONE);
+                        text.setText(m);
+                    }else {
+                        text11.setVisibility(View.GONE);
+                        text.setVisibility(View.GONE);
+                        text22.setVisibility(View.VISIBLE);
                     }
-                }else{
-                    
+                } else{
                     text11.setVisibility(View.VISIBLE);
+                    text22.setVisibility(View.GONE);
+                    text.setVisibility(View.GONE);
                 }
             }
         });
