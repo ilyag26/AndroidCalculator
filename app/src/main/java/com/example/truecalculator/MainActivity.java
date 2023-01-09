@@ -10,6 +10,22 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    void hideVisibility(TextView text, TextView text11, TextView text22){
+        text.setVisibility(View.VISIBLE);
+        text11.setVisibility(View.GONE);
+        text22.setVisibility(View.GONE);
+    }
+    void hideVisibility1(TextView text, TextView text11, TextView text22){
+        text.setVisibility(View.GONE);
+        text11.setVisibility(View.GONE);
+        text22.setVisibility(View.VISIBLE);
+    }
+    void hideVisibility2(TextView text, TextView text11, TextView text22){
+        text.setVisibility(View.GONE);
+        text11.setVisibility(View.VISIBLE);
+        text22.setVisibility(View.GONE);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,40 +51,28 @@ public class MainActivity extends AppCompatActivity {
                     if(text3.equals("-")){
                         sum = number1 - number2;
                         String m = String.valueOf(sum);
-                        text.setVisibility(View.VISIBLE);
-                        text11.setVisibility(View.GONE);
-                        text22.setVisibility(View.GONE);
+                        hideVisibility(text,text11,text22);
                         text.setText(m);
                     }else if(text3.equals("+")){
                         sum = number1 + number2;
-                        text.setVisibility(View.VISIBLE);
                         String m = String.valueOf(sum);
-                        text11.setVisibility(View.GONE);
-                        text22.setVisibility(View.GONE);
+                        hideVisibility(text,text11,text22);
                         text.setText(m);
                     }else if(text3.equals("*")){
                         sum = number1 * number2;
-                        text.setVisibility(View.VISIBLE);
                         String m = String.valueOf(sum);
-                        text11.setVisibility(View.GONE);
-                        text22.setVisibility(View.GONE);
+                        hideVisibility(text,text11,text22);
                         text.setText(m);
                     } else if(text3.equals("/")){
                         sum = number1 / number2;
-                        text.setVisibility(View.VISIBLE);
                         String m = String.valueOf(sum);
-                        text11.setVisibility(View.GONE);
-                        text22.setVisibility(View.GONE);
+                        hideVisibility(text,text11,text22);
                         text.setText(m);
                     }else {
-                        text11.setVisibility(View.GONE);
-                        text.setVisibility(View.GONE);
-                        text22.setVisibility(View.VISIBLE);
+                        hideVisibility1(text,text11,text22);
                     }
                 } else{
-                    text11.setVisibility(View.VISIBLE);
-                    text22.setVisibility(View.GONE);
-                    text.setVisibility(View.GONE);
+                    hideVisibility2(text,text11,text22);
                 }
             }
         });
