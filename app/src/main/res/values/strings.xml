@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">True Calculator</string>
+    <string name="welcome_to_calculator">Welcome to calculator!</string>
+    <string name="math_operate">Math operate</string>
+    <string name="number_2">Number 2</string>
+    <string name="number_1">Number 1</string>
+    <string name="calculate">Calculate</string>
+    <string name="write_something">Write something</string>
+</resources>
