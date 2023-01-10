@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickAC(View view) {
         text.setText("0");
-        trueNumber = 0;
-        answer = false;
         isNew = true;
+        change = false;
+        zero = false;
+        answer = false;
+        trueNumber = 0.0;
     }
 
     public void clickNumber(View view) {
@@ -142,10 +144,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } else if(c.equals("-")){
                         if (!change) {
-                            numbers1 = numbers1.substring(1);
+                            numbers1 = "-" + numbers1;
                             change = true;
                         } else {
-                            numbers1 = "-" + numbers1;
+                            numbers1 = numbers1.substring(1);
                             change = false;
                         }
                     } else {
