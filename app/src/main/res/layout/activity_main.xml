@@ -190,12 +190,12 @@
         app:backgroundTint="@null"/>
 
     <Button
-        android:id="@+id/buttonZyap"
+        android:id="@+id/buttonDot"
         android:layout_width="69dp"
         android:layout_height="61dp"
         android:layout_marginTop="636dp"
         android:onClick = "clickNumber"
-        android:text=","
+        android:text="."
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.619"

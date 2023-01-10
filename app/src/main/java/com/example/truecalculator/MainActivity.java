@@ -16,8 +16,10 @@ public class MainActivity extends AppCompatActivity {
     boolean isNew = true;
     boolean change = false;
     boolean zero = false;
+    boolean answer = false;
     char first;
-
+    double trueNumber = 0.0;
+    String strNumberNew;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkingZero() {
-        if(zero==true){
+        if (zero) {
             first = numbers1.charAt(0);
             if (String.valueOf(first).equals("-")) {
                 numbers1 = "-" + numbers1.substring(2);
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickAC(View view) {
         text.setText("0");
+        trueNumber = 0;
+        answer = false;
         isNew = true;
     }
 
@@ -88,48 +92,95 @@ public class MainActivity extends AppCompatActivity {
                 checkingZero();
                 numbers1 = numbers1 + 0;
                 break;
+            case R.id.buttonDot:
+                numbers1 = numbers1 + ".";
+                break;
             case R.id.buttonChange:
-
-                if (numbers1.equals("0") || numbers1.equals("")) {
-                    if (!change) {
-                        numbers1 = "-" + "0";
-                        change = true;
-                        zero = true;
-                    } else {
-                        numbers1 = "0";
-                        change = false;
-                        zero = true;
+                if (answer){
+                    strNumberNew = String.valueOf(trueNumber);
+                    char checking = strNumberNew.charAt(0);
+                    String c = String.valueOf(checking);
+                    if (strNumberNew.equals("0.0") || strNumberNew.equals("")||strNumberNew.equals("0")) {
+                        if (!change) {
+                            strNumberNew = "-" + "0.0";
+                            change = true;
+                            zero = true;
+                        } else {
+                            strNumberNew = "0.0";
+                            change = false;
+                            zero = true;
+                        }
+                    } else if(c.equals("-")){
+                        if (!change) {
+                            strNumberNew = strNumberNew.substring(1);
+                            change = true;
+                        } else {
+                            strNumberNew = "-" + strNumberNew.substring(1);
+                            change = false;
+                        }
+                    }else {
+                        if (!change) {
+                            strNumberNew = "-" + strNumberNew;
+                            change = true;
+                        } else {
+                            strNumberNew = strNumberNew.substring(0);
+                            change = false;
+                        }
                     }
-                } else {
-                    if (!change) {
-                        numbers1 = "-" + numbers1;
-                        change = true;
+                } else{
+                    char checking = numbers1.charAt(0);
+                    String c = String.valueOf(checking);
+                    if (numbers1.equals("0") || numbers1.equals("")) {
+                        if (!change) {
+                            numbers1 = "-" + "0";
+                            change = true;
+                            zero = true;
+                        } else {
+                            numbers1 = "0";
+                            change = false;
+                            zero = true;
+                        }
+                    } else if(c.equals("-")){
+                        if (!change) {
+                            numbers1 = numbers1.substring(1);
+                            change = true;
+                        } else {
+                            numbers1 = "-" + numbers1;
+                            change = false;
+                        }
                     } else {
-                        numbers1 = numbers1.substring(1);
-                        change = false;
+                        if (!change) {
+                            numbers1 = "-" + numbers1;
+                            change = true;
+                        } else {
+                            numbers1 = numbers1.substring(1);
+                            change = false;
+                        }
                     }
                 }
-
                 break;
         }
-        text.setText(numbers1);
+        text.setText((answer) ? strNumberNew : numbers1);
     }
-
     public void clickOperarion(View view) {
         isNew = true;
         oldNumber = text.getText().toString();
         switch (view.getId()) {
             case R.id.buttonMinus:
                 operator = "-";
+                answer = false;
                 break;
             case R.id.buttonPlus:
                 operator = "+";
+                answer = false;
                 break;
             case R.id.buttonDele:
                 operator = "/";
+                answer = false;
                 break;
             case R.id.buttonX:
                 operator = "*";
+                answer = false;
                 break;
         }
     }
@@ -140,15 +191,23 @@ public class MainActivity extends AppCompatActivity {
         switch (operator) {
             case "-":
                 result = Double.parseDouble(oldNumber) - Double.parseDouble(newNumber);
+                trueNumber = result;
+                answer = true;
                 break;
             case "+":
                 result = Double.parseDouble(oldNumber) + Double.parseDouble(newNumber);
+                trueNumber = result;
+                answer = true;
                 break;
             case "/":
                 result = Double.parseDouble(oldNumber) / Double.parseDouble(newNumber);
+                trueNumber = result;
+                answer = true;
                 break;
             case "*":
                 result = Double.parseDouble(oldNumber) * Double.parseDouble(newNumber);
+                trueNumber = result;
+                answer = true;
                 break;
         }
         text.setText(String.valueOf(result));
